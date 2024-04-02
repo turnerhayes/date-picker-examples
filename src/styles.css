@@ -1,0 +1,25 @@
+.picker-container {
+  display: none;
+}
+
+.picker-container:target {
+  display: block;
+}
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-list li {
+  display: inline-block;
+}
+
+.link-list li:not(:last-child) ::after {
+  content: " | ";
+}
+
+.timer-results[data-time]::before {
+  content: "Time: " attr(data-time) "ms";
+}

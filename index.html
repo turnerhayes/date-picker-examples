@@ -1,0 +1,113 @@
+<html class="size-full overflow-hidden">
+  <head>
+    <title>Parcel1 Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+
+  <body class="size-full">
+    <div class="app size-full flex flex-col">
+      <header class="flex justify-between">
+        <ul class="link-list">
+          <li>
+            <a href="#calendar">Calendar</a>
+          </li>
+          <li>
+            <a href="#dropdown">Dropdown</a>
+          </li>
+        </ul>
+
+        <button
+          id="reset-button"
+          class="hover:bg-sky-700 hover:text-white rounded-full p-2"
+        >
+          <svg
+            width="24px"
+            height="24px"
+            viewBox="0 0 21 21"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#000000"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <g
+                fill="none"
+                fill-rule="evenodd"
+                stroke="#000000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                transform="matrix(0 1 1 0 2.5 2.5)"
+              >
+                <path
+                  d="m3.98652376 1.07807068c-2.38377179 1.38514556-3.98652376 3.96636605-3.98652376 6.92192932 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"
+                ></path>
+                <path d="m4 1v4h-4" transform="matrix(1 0 0 -1 0 6)"></path>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </header>
+      <div class="pickers-container flex grow items-center justify-center">
+        <div id="calendar" class="picker-container">
+          <header class="pb-6">
+            <h1 class="text-lg">Calendar Date Picker</h1>
+          </header>
+          <input
+            datepicker
+            datepicker-autohide
+            datepicker-buttons
+            datepicker-autoselect-today
+            datepicker-orientation="left"
+            name="calendar-picker"
+            id="calendar-picker"
+            class="border-black border-2 rounded-md"
+          />
+        </div>
+        <div id="dropdown" class="picker-container">
+          <header class="pb-6">
+            <h1 class="text-xl">Dropdown Date Picker</h1>
+          </header>
+          <select name="month" class="border-black border-2 rounded-md">
+            <option value="">--Month--</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <select name="day" class="border-black border-2 rounded-md"></select>
+          <select name="year" class="border-black border-2 rounded-md"></select>
+          <input type="hidden" name="dropdown-date" />
+        </div>
+      </div>
+      <div class="flex justify-center text-4xl text-green-500">
+        <div id="timer-results" class="timer-results">&nbsp;</div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./src/tailwind.config.ts"></script>
+    <script src="src/dropdown-datepicker.ts" type="module"></script>
+    <script src="src/calendar-datepicker.ts" type="module"></script>
+    <script src="src/timer.ts" type="module"></script>
+  </body>
+</html>
