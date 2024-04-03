@@ -1,7 +1,6 @@
-import { Config } from "tailwindcss";
-import flowbitePlugin from "flowbite/plugin";
+const flowbitePlugin = ((window as any).Flowbite as any).Plugin;
 
-const config: Config = {
+const config = {
   content: ["./index.html", "./node_modules/flowbite/**/*.js"],
   plugins: [flowbitePlugin],
 };
