@@ -23,3 +23,11 @@
 .timer-results[data-time]::before {
   content: "Time: " attr(data-time) "ms";
 }
+
+.calendar-day {
+  box-shadow: 0 0 0 1px black;
+}
+
+.calendar-day.current {
+  background-color: aqua;
+}

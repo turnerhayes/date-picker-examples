@@ -17,6 +17,35 @@
   </head>
 
   <body class="size-full">
+    <template id="calendar-day">
+      <button class="calendar-day w-full h-full flex justify-center align-center">
+      </button>
+    </template>
+    <template id="calendar-popup">
+      <dialog class="dialog w-56 h-56 border-0 bg-white z-50 border-2 fixed">
+        <div class="dialog-content w-full h-full">
+          <header class="header flex flex-row">
+            <button class="prev-month">
+              &lt;
+            </button>
+            <h3 class="month-name ml-auto">
+              April
+            </h3>
+            &nbsp;
+            <h3 class="year mr-auto">
+              2024
+            </h3>
+            <button class="next-month">
+              &gt;
+            </button>
+          </header>
+          <div class="days grid gap-px grid-cols-7 auto-rows-auto p-1">
+
+          </div>
+        </div>
+      </dialog>
+    </template>
+
     <div class="app size-full flex flex-col">
       <header class="flex justify-between">
         <ul class="link-list">
@@ -25,6 +54,9 @@
           </li>
           <li>
             <a href="#dropdown">Dropdown</a>
+          </li>
+          <li>
+            <a href="#custom-calendar">Custom Calendar</a>
           </li>
         </ul>
 
@@ -102,6 +134,17 @@
           <select name="year" class="border-black border-2 rounded-md"></select>
           <input type="hidden" name="dropdown-date" />
         </div>
+        
+        <div id="custom-calendar" class="picker-container">
+          <header class="pb-6">
+            <h1 class="text-lg">(Custom) Calendar Date Picker</h1>
+          </header>
+          <input
+            name="custom-calendar-picker"
+            id="custom-calendar-picker"
+            class="border-black border-2 rounded-md"
+          />
+        </div>
       </div>
       <div class="flex justify-center text-4xl text-green-500">
         <div id="timer-results" class="timer-results">&nbsp;</div>
@@ -114,6 +157,7 @@
     <script src="./src/tailwind.config.ts"></script>
     <script src="src/dropdown-datepicker.ts" type="module"></script>
     <script src="src/calendar-datepicker.ts" type="module"></script>
+    <script src="src/custom-calendar-datepicker.ts" type="module"></script>
     <script src="src/timer.ts" type="module"></script>
   </body>
 </html>

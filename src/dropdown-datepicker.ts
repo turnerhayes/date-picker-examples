@@ -1,32 +1,9 @@
 import { onReset } from "./reset";
+import { onInit } from "./on-init";
+import { MonthNumber, getDaysInMonth } from "./date-utils";
 
 const MIN_YEAR = new Date().getFullYear() - 110;
 const MAX_YEAR = new Date().getFullYear();
-
-const getDaysInMonth = (month: number, year: number) => {
-  switch (month) {
-    case 1:
-    case 3:
-    case 5:
-    case 7:
-    case 8:
-    case 10:
-    case 12:
-      return 31;
-    case 4:
-    case 6:
-    case 9:
-    case 11:
-      return 30;
-    case 2:
-      if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
-        return 29;
-      }
-      return 28;
-    default:
-      throw new Error(`Invalid month: ${month}`);
-  }
-};
 
 const fillDays = (
   dayPicker: HTMLSelectElement,
@@ -45,7 +22,7 @@ const fillDays = (
     days = 31;
   } else {
     days = getDaysInMonth(
-      parseInt(monthPickerValue),
+      parseInt(monthPickerValue) as MonthNumber,
       parseInt(yearPickerValue)
     );
   }
@@ -106,16 +83,8 @@ const setupDropdownPicker = (dropdownContainer: HTMLElement) => {
   });
 };
 
-const init = () => {
+onInit(() => {
   const dropdownContainer = document.getElementById("dropdown")!;
-
+  
   setupDropdownPicker(dropdownContainer);
-
-  document.removeEventListener("DOMContentLoaded", init);
-};
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
-}
+});
