@@ -33,6 +33,7 @@ const fillDays = (
   monthPicker: HTMLSelectElement,
   yearPicker: HTMLSelectElement
 ) => {
+  const currentVal = dayPicker.value;
   dayPicker.innerHTML = "";
   const yearPickerValue = yearPicker.value;
   const monthPickerValue = monthPicker.value;
@@ -54,6 +55,9 @@ const fillDays = (
     option.value = i.toString();
     option.text = i.toString();
     dayPicker.appendChild(option);
+  }
+  if (currentVal) {
+    dayPicker.value = currentVal;
   }
 };
 

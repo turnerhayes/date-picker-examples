@@ -1,7 +1,7 @@
 {
-  "name": "vanilla-typescript",
+  "name": "date-picker-examples",
   "version": "1.0.0",
-  "description": "JavaScript and TypeScript example starter project",
+  "description": "Date picker controls for comparison",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel index.html",
