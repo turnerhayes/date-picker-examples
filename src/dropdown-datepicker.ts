@@ -1,3 +1,5 @@
+import { triggerDateChange } from "./date-change-event";
+import { onInit } from "./oninit";
 import { onReset } from "./reset";
 
 const MIN_YEAR = new Date().getFullYear() - 110;
@@ -94,12 +96,33 @@ const setupDropdownPicker = (dropdownContainer: HTMLElement) => {
     fillDays(dayPicker, monthPicker, yearPicker);
   });
 
+  const setInputValue = (
+    hiddenInput: HTMLInputElement,
+    yearPicker: HTMLSelectElement,
+    monthPicker: HTMLSelectElement,
+    dayPicker: HTMLSelectElement
+  ) => {
+    if (!yearPicker.value || !monthPicker.value || ! dayPicker.value) {
+      return;
+    }
+    const dateString = `${yearPicker.value}-${monthPicker.value}-${dayPicker.value}`;
+    hiddenInput.value = dateString;
+    triggerDateChange(hiddenInput, new Date(dateString));
+  };
+
+  hiddenInput.addEventListener("change", () => {
+    const value = hiddenInput.value;
+    const date = new Date(value);
+
+    triggerDateChange(hiddenInput, date);
+  });
+
   fillDays(dayPicker, monthPicker, yearPicker);
   fillYears(yearPicker);
 
   [dayPicker, monthPicker, yearPicker].forEach((element) => {
     element.addEventListener("change", () => {
-      hiddenInput.value = `${yearPicker.value}-${monthPicker.value}-${dayPicker.value}`;
+      setInputValue(hiddenInput, yearPicker, monthPicker, dayPicker);
     });
   });
 
@@ -110,16 +133,8 @@ const setupDropdownPicker = (dropdownContainer: HTMLElement) => {
   });
 };
 
-const init = () => {
+onInit(() => {
   const dropdownContainer = document.getElementById("dropdown")!;
-
+  
   setupDropdownPicker(dropdownContainer);
-
-  document.removeEventListener("DOMContentLoaded", init);
-};
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
-}
+});
