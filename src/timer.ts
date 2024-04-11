@@ -28,7 +28,7 @@ const handleInputInteraction = (event: Event) => {
 
 window.addEventListener(DATE_CHANGE_EVENT_NAME, (event: DateChangeEvent) => {
   const date = event.detail;
-  if (checkDate(date)) {
+  if (endTimestamp === null && checkDate(date)) {
     setEndTimestamp(event.timeStamp);
   }
 });
