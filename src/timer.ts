@@ -11,7 +11,6 @@ const debounce = <A extends unknown[]>(
 
   onReset(() => {
     if (timeoutId !== null) {
-      console.log("Interaction reset; timer cleared");
       clearTimeout(timeoutId);
       timeoutId = null;
     }
@@ -48,7 +47,12 @@ const handleInputInteraction = (event: Event) => {
     startTimestamp = event.timeStamp;
     console.log("set start timestamp to", startTimestamp);
   }
-  debouncedSetEndTimestamp(event.timeStamp);
+  // If the event was a blur, we don't want to set end timestamp if we already
+  // have one set--if we just click outside the control we don't want to
+  // overwrite the end timestamp.
+  if (event.type !== "blur" || !endTimestamp) {
+    debouncedSetEndTimestamp(event.timeStamp);
+  }
 };
 
 const init = () => {
