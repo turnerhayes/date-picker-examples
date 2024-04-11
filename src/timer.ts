@@ -36,7 +36,6 @@ const SET_END_DELAY_MS = 8000;
 
 const debouncedSetEndTimestamp = debounce((timestamp: number) => {
   endTimestamp = timestamp;
-  console.log("set end timestamp to", endTimestamp);
   document
     .getElementById("timer-results")!
     .setAttribute("data-time", "" + (endTimestamp - startTimestamp!));
@@ -45,7 +44,6 @@ const debouncedSetEndTimestamp = debounce((timestamp: number) => {
 const handleInputInteraction = (event: Event) => {
   if (startTimestamp === null) {
     startTimestamp = event.timeStamp;
-    console.log("set start timestamp to", startTimestamp);
   }
   // If the event was a blur, we don't want to set end timestamp if we already
   // have one set--if we just click outside the control we don't want to
