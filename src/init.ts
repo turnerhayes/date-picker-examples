@@ -3,9 +3,9 @@ import { onInit } from "./oninit";
 import { triggerReset } from "./reset";
 
 const getDateString = (date: Date): string => {
-    const year = date.getFullYear();
-    let month: string|number = date.getMonth() + 1;
-    let day: string|number = date.getDate();
+    const year = date.getUTCFullYear();
+    let month: string|number = date.getUTCMonth() + 1;
+    let day: string|number = date.getUTCDate();
 
     if (month < 10) {
         month = "0" + month;
@@ -21,12 +21,23 @@ const getTargetDateContainer = () => {
     return document.getElementById("target-date") as HTMLTimeElement;
 };
 
-const targetDate = new Date();
+const getTargetDate = (): Date => {
+    const queryString = new URLSearchParams(document.location.search);
+    const dateString = queryString.get("target");
+
+    if (!dateString) {
+        return new Date();
+    }
+
+    return new Date(dateString);
+};
+
+const targetDate = getTargetDate();
 
 export const checkDate = (date: Date): boolean => {
-    return date.getFullYear() === targetDate.getFullYear() &&
-        date.getMonth() === targetDate.getMonth() &&
-        date.getDate() === targetDate.getDate();
+    return date.getUTCFullYear() === targetDate.getUTCFullYear() &&
+        date.getUTCMonth() === targetDate.getUTCMonth() &&
+        date.getUTCDate() === targetDate.getUTCDate();
 };
 
 window.addEventListener("hashchange", () => {
@@ -42,6 +53,7 @@ onInit(() => {
         year: "numeric",
         month: "long",
         day: "numeric",
+        timeZone: "UTC",
     }).format(targetDate);
 
     window.addEventListener(DATE_CHANGE_EVENT_NAME, (event: DateChangeEvent) => {

@@ -2,8 +2,8 @@ import { triggerDateChange } from "./date-change-event";
 import { onInit } from "./oninit";
 import { onReset } from "./reset";
 
-const MIN_YEAR = new Date().getFullYear() - 110;
-const MAX_YEAR = new Date().getFullYear();
+const MIN_YEAR = new Date().getUTCFullYear() - 110;
+const MAX_YEAR = new Date().getUTCFullYear();
 
 const getDaysInMonth = (month: number, year: number) => {
   switch (month) {
